@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PallupApp.DataContext;
+using PallupApp.Models;
 
 namespace PallupApp.Controllers
 {
@@ -14,7 +15,21 @@ namespace PallupApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
-        }  
+            var model = new HomeViewModel
+            {
+                Categories = _dbContext.Categories
+                    .Where(c => c.ImageUrl != null)
+                    .OrderBy(c => c.Name)
+                    .ToList(),
+
+                Products = _dbContext.Products
+                    .OrderByDescending(p => p.Id) 
+                    .Take(6)                   
+                    .ToList()
+            };
+
+            return View(model);
+        }
     }
+
 }
