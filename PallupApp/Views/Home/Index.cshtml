@@ -1,4 +1,5 @@
-﻿@{
+﻿@model HomeViewModel
+@{
     HomeViewModel model = Model;
     var categories = model.Categories;
     var products = model.Products;
@@ -95,7 +96,7 @@
 
 <!--====== Category Part Ends ======-->
 <!--====== Product Part Start ======-->
-@model HomeViewModel
+
 
 <section class="product-area pt-100 pb-100">
     <div class="container-fluid custom-container">
@@ -124,7 +125,7 @@
                                             <img class="first-image" src="~/assets/images/product/@product.MainImageUrl" alt="@product.Name" />
                                             @if (!string.IsNullOrEmpty(product.SecondImageUrl))
                                             {
-                                                <img class="second-image" src="@product.SecondImageUrl" alt="@product.Name" />
+                                                <img class="second-image" src="~/assets/images/product/@product.SecondImageUrl" alt="@product.Name" />
                                             }
                                         </a>
                                         <ul class="product-meta">
